@@ -5,20 +5,44 @@ import React, { Component } from 'react';
 class ChatWindow extends Component {
 
     state = {
-        messages: [
-            { username: 'Amy', text: 'Hi, Jon!' },
-            { username: 'Amy', text: 'How are you?' },
-            { username: 'John', text: 'Hi, Amy! Good, you?' },
-        ]
+        newMessage: ''
+    };
+
+
+    handleNewMessage = event => {
+        this.setState({
+            newMessage: event.target.value
+        });
+    };
+
+
+    clearInput = () => {
+        this.setState({
+            newMessage: ''
+        });
+    }
+
+
+    handleSubmit = event => {
+
+        const { addNewMessage } = this.props;
+
+        // prevent browser refresh on submission
+        event.preventDefault();
+
+        // pass `newMessage` value back to callback in parent component
+        addNewMessage(this.props.sender, this.state.newMessage);
+
+        this.clearInput();
     };
 
 
     /*
-      If the user did not type anything, he/she should not be
-      allowed to submit.
-      */
+     * If the user did not type anything, he/she should not be 
+     * allowed to submit.
+     */
     isDisabled = () => {
-        return false;
+        return this.state.newMessage === '';
     };
 
 
@@ -30,7 +54,7 @@ class ChatWindow extends Component {
 
                 <ul className="message-list">
                     {
-                        this.state.messages.map((message, index) => (
+                        this.props.messages.map((message, index) => (
                             <li
                                 key={index}
                                 className={
@@ -44,12 +68,21 @@ class ChatWindow extends Component {
                 </ul>
 
                 <div>
-                    <form className="input-group">
-                        <input type="text" className="form-control" placeholder="Enter your message..." />
+                    <form className="input-group" onSubmit={this.handleSubmit}>
+
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Enter your message..."
+
+                            value={this.state.newMessage}
+                            onChange={this.handleNewMessage}
+                        />
+
                         <div className="input-group-append">
                             <button className="btn submit-button" disabled={this.isDisabled()}>
                                 SEND
-                    </button>
+                            </button>
                         </div>
                     </form>
                 </div>
