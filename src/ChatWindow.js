@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ChatHistory from './ChatHistory';
 
 
 
@@ -52,20 +53,10 @@ class ChatWindow extends Component {
 
                 <div className="name sender">{this.props.sender}</div>
 
-                <ul className="message-list">
-                    {
-                        this.props.messages.map((message, index) => (
-                            <li
-                                key={index}
-                                className={
-                                    message.username === this.props.sender ? 'message sender' : 'message recipient'
-                                }
-                            >
-                                <p>{`${message.username}: ${message.text}`}</p>
-                            </li>
-                        ))
-                    }
-                </ul>
+                <ChatHistory
+                    messages={this.props.messages}
+                    sender={this.props.sender}
+                />
 
                 <div>
                     <form className="input-group" onSubmit={this.handleSubmit}>
