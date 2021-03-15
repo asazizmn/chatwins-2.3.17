@@ -13,12 +13,6 @@ class App extends Component {
     users: [
       { username: 'Amy' },
       { username: 'John' }
-    ],
-
-    messages: [
-      { username: 'Amy', text: 'Hi, Jon!' },
-      { username: 'Amy', text: 'How are you?' },
-      { username: 'John', text: 'Hi, Amy! Good, you?' },
     ]
   };
 
@@ -35,15 +29,11 @@ class App extends Component {
         <div className="container">
 
           <ChatWindow
-            idx={0}
-            users={this.state.users}
-            messages={this.state.messages}
+            sender={this.state.users[0].username}
           />
 
           <ChatWindow
-            idx={1}
-            users={this.state.users}
-            messages={this.state.messages}
+            sender={this.state.users[1].username}
           />
 
         </div>

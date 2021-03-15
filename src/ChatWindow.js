@@ -4,6 +4,15 @@ import React, { Component } from 'react';
 
 class ChatWindow extends Component {
 
+    state = {
+        messages: [
+            { username: 'Amy', text: 'Hi, Jon!' },
+            { username: 'Amy', text: 'How are you?' },
+            { username: 'John', text: 'Hi, Amy! Good, you?' },
+        ]
+    };
+
+
     /*
       If the user did not type anything, he/she should not be
       allowed to submit.
@@ -17,15 +26,15 @@ class ChatWindow extends Component {
         return (
             <div className="chat-window">
 
-                <div className="name sender">{this.props.users[this.props.idx].username}</div>
+                <div className="name sender">{this.props.sender}</div>
 
                 <ul className="message-list">
                     {
-                        this.props.messages.map((message, index) => (
+                        this.state.messages.map((message, index) => (
                             <li
                                 key={index}
                                 className={
-                                    message.username === this.props.users[this.props.idx].username ? 'message sender' : 'message recipient'
+                                    message.username === this.props.sender ? 'message sender' : 'message recipient'
                                 }
                             >
                                 <p>{`${message.username}: ${message.text}`}</p>
