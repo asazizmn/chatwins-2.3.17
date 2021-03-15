@@ -53,6 +53,7 @@ class App extends Component {
                     {
                         users.map( user => (
                             <ChatWindow
+                                key={user.username}
                                 sender={user.username}
                                 messages={messages}
                                 addNewMessage={this.addNewMessage}
