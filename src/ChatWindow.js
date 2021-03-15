@@ -25,13 +25,13 @@ class ChatWindow extends Component {
 
     handleSubmit = event => {
 
-        const { addNewMessage } = this.props;
+        const { addNewMessage, sender } = this.props;
 
         // prevent browser refresh on submission
         event.preventDefault();
 
         // pass `newMessage` value back to callback in parent component
-        addNewMessage(this.props.sender, this.state.newMessage);
+        addNewMessage(sender, this.state.newMessage);
 
         this.clearInput();
     };
