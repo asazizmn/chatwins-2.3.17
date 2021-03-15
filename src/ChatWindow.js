@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import MessageInput from './MessageInput';
+import React from 'react';
+
 import ChatHistory from './ChatHistory';
+import MessageInput from './MessageInput';
 
 
 
