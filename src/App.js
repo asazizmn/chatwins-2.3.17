@@ -37,6 +37,9 @@ class App extends Component {
 
 
     render() {
+
+        const { users, messages } = this.state;
+
         return (
             <div className="App">
 
@@ -47,17 +50,15 @@ class App extends Component {
 
                 <div className="container">
 
-                    <ChatWindow
-                        sender={this.state.users[0].username}
-                        messages={this.state.messages}
-                        addNewMessage={this.addNewMessage}
-                    />
-
-                    <ChatWindow
-                        sender={this.state.users[1].username}
-                        messages={this.state.messages}
-                        addNewMessage={this.addNewMessage}
-                    />
+                    {
+                        users.map( user => (
+                            <ChatWindow
+                                sender={user.username}
+                                messages={messages}
+                                addNewMessage={this.addNewMessage}
+                            />
+                        ))
+                    }
 
                 </div>
             </div>
